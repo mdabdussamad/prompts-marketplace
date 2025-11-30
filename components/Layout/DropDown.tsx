@@ -29,7 +29,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
     router.push("/sign-in");
   };
   return (
-    <Dropdown placeholder="bottom-start" className="bg-white">
+    <Dropdown placement="bottom-start" className="bg-white">
       <DropdownTrigger>
         <Avatar
           src={user?.imageUrl}
@@ -39,6 +39,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
         <DropdownItem
+          key="profile"
           onClick={() => {
             handleProfile();
             setOpen(false);
@@ -55,7 +56,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
             </span>
           </div>
         </DropdownItem>
-        <DropdownItem>
+        <DropdownItem key="orders">
           <Link href={"/my-orders"} className="flex w-full items-center">
             <GrDocumentStore className="text-[22px] ml-2 text-black" />
             <span className={`${styles.label} text-black text-[16px] pl-2`}>
@@ -63,7 +64,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
             </span>
           </Link>
         </DropdownItem>
-        <DropdownItem className={`${!isSellerExist && "hidden"}`}>
+        <DropdownItem key="seller" className={`${!isSellerExist && "hidden"}`}>
           <Link href={"/my-shop"} className="flex w-full items-center">
             <TbSwitchVertical className="text-2xl ml-2 text-black" />
             <span className={`${styles.label} text-black text-[16px] pl-2`}>
@@ -71,7 +72,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
             </span>
           </Link>
         </DropdownItem>
-        <DropdownItem onClick={handleLogOut}>
+        <DropdownItem key="logout" onClick={handleLogOut}>
           <div className="flex items-center w-full">
             <AiOutlineLogout className="text-2xl ml-2 text-black" />
             <span className={`${styles.label} text-black text-[16px] pl-2`}>

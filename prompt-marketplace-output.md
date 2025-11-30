@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `prompt-marketplace`
-- **Generated On**: 2025-11-28 21:11:11 (Asia/Katmandu / GMT+06:45)
+- **Generated On**: 2025-11-30 18:18:05 (Asia/Katmandu / GMT+06:45)
 - **Total Files Processed**: 105
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -106,7 +106,7 @@
 │   ├── 📁 create-shop/
 │   │   └── 📄 page.tsx (3.86 KB)
 │   ├── 📁 marketplace/
-│   │   ├── 📄 _page.tsx (3.32 KB)
+│   │   ├── 📄 _page.tsx (3.35 KB)
 │   │   └── 📄 page.tsx (381 B)
 │   ├── 📁 my-orders/
 │   │   ├── 📄 _page.tsx (8.28 KB)
@@ -115,7 +115,7 @@
 │   │   └── 📄 page.tsx (107 B)
 │   ├── 📁 prompt/
 │   │   └── 📁 [id]/
-│   │       ├── 📄 _page.tsx (2.7 KB)
+│   │       ├── 📄 _page.tsx (2.6 KB)
 │   │       └── 📄 page.tsx (605 B)
 │   ├── 📁 sign-in/
 │   │   └── 📁 [[...sign-in]]/
@@ -130,14 +130,14 @@
 │   ├── 📁 Analytics/
 │   │   └── 📄 OrderAnalytics.tsx (2.42 KB)
 │   ├── 📁 Layout/
-│   │   ├── 📄 DropDown.tsx (2.69 KB)
+│   │   ├── 📄 DropDown.tsx (2.75 KB)
 │   │   ├── 📄 Footer.tsx (1.5 KB)
 │   │   ├── 📄 Header.tsx (4.07 KB)
 │   │   └── 📄 Navigation.tsx (882 B)
 │   ├── 📁 Prompts/
 │   │   ├── 📁 PromptDetails/
 │   │   │   ├── 📄 CheckoutForm.tsx (1.81 KB)
-│   │   │   ├── 📄 PromptDetails.tsx (2.05 KB)
+│   │   │   ├── 📄 PromptDetails.tsx (2.1 KB)
 │   │   │   ├── 📄 PromptDetailsCard.tsx (5.1 KB)
 │   │   │   ├── 📄 PromptInformation.tsx (2.65 KB)
 │   │   │   └── 📄 ReviewCard.tsx (898 B)
@@ -179,8 +179,8 @@
 ├── 📄 middleware.ts (212 B)
 ├── 📄 next-env.d.ts (233 B)
 ├── 📄 next.config.js (182 B)
-├── 📄 package-lock.json (263.72 KB)
-├── 📄 package.json (1.28 KB)
+├── 📄 package-lock.json (284.44 KB)
+├── 📄 package.json (1.3 KB)
 ├── 📄 postcss.config.js (82 B)
 ├── 📄 README.md (1.94 KB)
 ├── 📄 tailwind.config.ts (780 B)
@@ -300,7 +300,7 @@
 | Total Directories | 60 |
 | Text Files | 98 |
 | Binary Files | 7 |
-| Total Size | 466.93 KB |
+| Total Size | 487.7 KB |
 
 ### 📄 File Types Distribution
 
@@ -3231,15 +3231,15 @@ export default Page;
 ### <a id="📄-app-marketplace-page-tsx"></a>📄 `app/marketplace/_page.tsx`
 
 **File Info:**
-- **Size**: 3.32 KB
+- **Size**: 3.35 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `app/marketplace/_page.tsx`
 - **Relative Path**: `app/marketplace`
 - **Created**: 2025-11-12 05:58:33 (Asia/Katmandu / GMT+06:45)
-- **Modified**: 2024-01-24 15:41:52 (Asia/Katmandu / GMT+06:45)
-- **MD5**: `53b958a7d02898e682742cb5047d670c`
-- **SHA256**: `1192798a0f9023ffe0c2b2371c6c950d5e5c2ec68ac8b27ee92b1710a6a1b8e2`
+- **Modified**: 2025-11-30 03:10:02 (Asia/Katmandu / GMT+06:45)
+- **MD5**: `d32cd2a75e65f1d2e22233f207d2cc72`
+- **SHA256**: `72a86fc8bd35c91c57735970c8744241da107c9a9d648754972ecbf71773f995`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3273,20 +3273,6 @@ const MarketPlaceRouter = ({
 
   const router = useRouter();
 
-  const fetchPromptsData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/get-prompts?page=${initialPage}`);
-      const data = await response.json();
-      setPrompts(data.prompts);
-      setTotalPrompts(data.totalPrompts);
-    } catch (error) {
-      console.error("Failed to fetch prompts:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     if (!isMounted) {
       setisMounted(true);
@@ -3300,6 +3286,19 @@ const MarketPlaceRouter = ({
   }, [initialPage, router]);
 
   useEffect(() => {
+    const fetchPromptsData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/get-prompts?page=${initialPage}`);
+        const data = await response.json();
+        setPrompts(data.prompts);
+        setTotalPrompts(data.totalPrompts);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchPromptsData();
   }, [initialPage]);
 
@@ -3769,15 +3768,15 @@ export default Page;
 ### <a id="📄-app-prompt-id-page-tsx"></a>📄 `app/prompt/[id]/_page.tsx`
 
 **File Info:**
-- **Size**: 2.7 KB
+- **Size**: 2.6 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `app/prompt/[id]/_page.tsx`
 - **Relative Path**: `app/prompt/[id]`
 - **Created**: 2025-11-12 05:58:33 (Asia/Katmandu / GMT+06:45)
-- **Modified**: 2024-01-24 15:41:52 (Asia/Katmandu / GMT+06:45)
-- **MD5**: `140da342ab502300b48acf68aef68dae`
-- **SHA256**: `a03b41cac71b0f579b37b6225f9ef8159bd47769522d962cf14201095549e659`
+- **Modified**: 2025-11-30 17:49:09 (Asia/Katmandu / GMT+06:45)
+- **MD5**: `3d21c59600838576001fe813a26b78d7`
+- **SHA256**: `c1a23f599467d0b84c478d20bc94b48e442383de3d153018ba7cca06ae1263a4`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3813,36 +3812,30 @@ const PromptDetailsPage = ({
   const [prompt, setPrompt] = useState<propmt>();
   const [loading, setLoading] = useState(true);
 
-  const fetchPromptData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/get-prompt/${promptId}`);
-      const data = await response.json();
-      setPrompt(data);
-    } catch (error) {
-      console.error("Failed to fetch prompts:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchPromptData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/get-prompt/${promptId}`);
+        const data = await response.json();
+        setPrompt(data);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (promptId) fetchPromptData();
+  }, [promptId]);
 
   useEffect(() => {
-    fetchPromptData();
+    // set mounted once
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-    }
-  }, [isMounted]);
-
-  useEffect(() => {
     if (prompt) {
-      if (publishAbleKey) {
-        const amount = Math.round(prompt.price * 100);
-        newPaymentIntent({ amount });
-        setStripePromise(loadStripe(publishAbleKey));
-      }
+      setStripePromise(loadStripe(publishAbleKey));
     }
   }, [publishAbleKey, prompt]);
 
@@ -4279,15 +4272,15 @@ export default OrderAnalytics;
 ### <a id="📄-components-layout-dropdown-tsx"></a>📄 `components/Layout/DropDown.tsx`
 
 **File Info:**
-- **Size**: 2.69 KB
+- **Size**: 2.75 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `components/Layout/DropDown.tsx`
 - **Relative Path**: `components/Layout`
 - **Created**: 2025-11-12 05:58:33 (Asia/Katmandu / GMT+06:45)
-- **Modified**: 2024-01-24 15:41:52 (Asia/Katmandu / GMT+06:45)
-- **MD5**: `b2f4af70040d56242932def0ba6c4ff1`
-- **SHA256**: `773b50b88b71b750a880d649841237ad0a43435c13b10395f1910b17605083f2`
+- **Modified**: 2025-11-30 03:08:59 (Asia/Katmandu / GMT+06:45)
+- **MD5**: `c49f039cdfc4fafaf0fbd241f97b8cad`
+- **SHA256**: `986789e461b469cd036fb6c8b2d22bcb80524af53e4a7f0462c424cf17a0ee28`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -4324,7 +4317,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
     router.push("/sign-in");
   };
   return (
-    <Dropdown placeholder="bottom-start" className="bg-white">
+    <Dropdown placement="bottom-start" className="bg-white">
       <DropdownTrigger>
         <Avatar
           src={user?.imageUrl}
@@ -4334,6 +4327,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
         <DropdownItem
+          key="profile"
           onClick={() => {
             handleProfile();
             setOpen(false);
@@ -4350,7 +4344,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
             </span>
           </div>
         </DropdownItem>
-        <DropdownItem>
+        <DropdownItem key="orders">
           <Link href={"/my-orders"} className="flex w-full items-center">
             <GrDocumentStore className="text-[22px] ml-2 text-black" />
             <span className={`${styles.label} text-black text-[16px] pl-2`}>
@@ -4358,7 +4352,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
             </span>
           </Link>
         </DropdownItem>
-        <DropdownItem className={`${!isSellerExist && "hidden"}`}>
+        <DropdownItem key="seller" className={`${!isSellerExist && "hidden"}`}>
           <Link href={"/my-shop"} className="flex w-full items-center">
             <TbSwitchVertical className="text-2xl ml-2 text-black" />
             <span className={`${styles.label} text-black text-[16px] pl-2`}>
@@ -4366,7 +4360,7 @@ const DropDown = ({ user, setOpen, handleProfile, isSellerExist }: Props) => {
             </span>
           </Link>
         </DropdownItem>
-        <DropdownItem onClick={handleLogOut}>
+        <DropdownItem key="logout" onClick={handleLogOut}>
           <div className="flex items-center w-full">
             <AiOutlineLogout className="text-2xl ml-2 text-black" />
             <span className={`${styles.label} text-black text-[16px] pl-2`}>
@@ -4789,15 +4783,15 @@ export default CheckoutForm;
 ### <a id="📄-components-prompts-promptdetails-promptdetails-tsx"></a>📄 `components/Prompts/PromptDetails/PromptDetails.tsx`
 
 **File Info:**
-- **Size**: 2.05 KB
+- **Size**: 2.1 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `components/Prompts/PromptDetails/PromptDetails.tsx`
 - **Relative Path**: `components/Prompts/PromptDetails`
 - **Created**: 2025-11-12 05:58:33 (Asia/Katmandu / GMT+06:45)
-- **Modified**: 2024-01-24 15:41:52 (Asia/Katmandu / GMT+06:45)
-- **MD5**: `18a2c3dfb757db8bb100a3a1a6e033f0`
-- **SHA256**: `4878f12aa61e53afd781833c6ae848b7adb4b070cb4385d7ef435419433bba9d`
+- **Modified**: 2025-11-30 03:24:49 (Asia/Katmandu / GMT+06:45)
+- **MD5**: `3e6daf5e2e8c9a4e1aabdfd22703a639`
+- **SHA256**: `67982682b9b539cd67e8e537293ba747e193ce5571418ce7a7378e7c97efab97`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -4824,24 +4818,24 @@ const PromptDetails = ({
   const [prompts, setPrompts] = useState<propmt[]>();
   const [loading, setLoading] = useState(true);
 
-  const fetchPromptData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `/api/get-related-prompts?promptCategory=${promptData?.category}`
-      );
-      const data = await response.json();
-      setPrompts(data);
-    } catch (error) {
-      console.error("Failed to fetch prompts:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchPromptData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `/api/get-related-prompts?promptCategory=${promptData?.category}`
+        );
+        const data = await response.json();
+        setPrompts(data);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchPromptData();
-  }, []);
+  }, [promptData?.category]);
 
   return (
     <div>
@@ -7217,15 +7211,15 @@ module.exports = nextConfig;
 ### <a id="📄-package-lock-json"></a>📄 `package-lock.json`
 
 **File Info:**
-- **Size**: 263.72 KB
+- **Size**: 284.44 KB
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package-lock.json`
 - **Relative Path**: `root`
 - **Created**: 2025-11-28 20:59:37 (Asia/Katmandu / GMT+06:45)
-- **Modified**: 2025-11-28 20:59:37 (Asia/Katmandu / GMT+06:45)
-- **MD5**: `d71a5c2dbb52d8e30e1f230d0e455cf3`
-- **SHA256**: `6bdd90c9cdb94f5c75b6984b7375e2ca1bdc48ab4d0f8b13964a59ab5be6b04e`
+- **Modified**: 2025-11-30 02:58:35 (Asia/Katmandu / GMT+06:45)
+- **MD5**: `37e8a0f3ce9e5fc61852a5a750585d8e`
+- **SHA256**: `c31ce7cdea24dc798c66c48b634aa41899f9ac064e5a796c4c33f2467a24823b`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -7262,6 +7256,7 @@ module.exports = nextConfig;
         "react-hot-toast": "^2.4.1",
         "react-icons": "^5.2.1",
         "recharts": "^2.12.7",
+        "sharp": "^0.34.5",
         "stripe": "^16.5.0",
         "timeago.js": "^4.0.2"
       },
@@ -7519,6 +7514,16 @@ module.exports = nextConfig;
       },
       "engines": {
         "node": ">=14"
+      }
+    },
+    "node_modules/@emnapi/runtime": {
+      "version": "1.7.1",
+      "resolved": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.7.1.tgz",
+      "integrity": "sha512-PVtJr5CmLwYAU9PZDMITZoR5iAOShYREoR45EyyLrbntV50mdePTgUn4AmOw90Ifcj+x2kRjdzr1HP3RrNiHGA==",
+      "license": "MIT",
+      "optional": true,
+      "dependencies": {
+        "tslib": "^2.4.0"
       }
     },
     "node_modules/@emotion/babel-plugin": {
@@ -7786,6 +7791,471 @@ module.exports = nextConfig;
       "version": "2.0.3",
       "dev": true,
       "license": "BSD-3-Clause"
+    },
+    "node_modules/@img/colour": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/@img/colour/-/colour-1.0.0.tgz",
+      "integrity": "sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/@img/sharp-darwin-arm64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz",
+      "integrity": "sha512-imtQ3WMJXbMY4fxb/Ndp6HBTNVtWCUI0WdobyheGf5+ad6xX8VIDO8u2xE4qc/fr08CKG/7dDseFtn6M6g/r3w==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-darwin-arm64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-darwin-x64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-x64/-/sharp-darwin-x64-0.34.5.tgz",
+      "integrity": "sha512-YNEFAF/4KQ/PeW0N+r+aVVsoIY0/qxxikF2SWdp+NRkmMB7y9LBZAVqQ4yhGCm/H3H270OSykqmQMKLBhBJDEw==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-darwin-x64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-libvips-darwin-arm64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.4.tgz",
+      "integrity": "sha512-zqjjo7RatFfFoP0MkQ51jfuFZBnVE2pRiaydKJ1G/rHZvnsrHAOcQALIi9sA5co5xenQdTugCvtb1cuf78Vf4g==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-darwin-x64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.2.4.tgz",
+      "integrity": "sha512-1IOd5xfVhlGwX+zXv2N93k0yMONvUlANylbJw1eTah8K/Jtpi15KC+WSiaX/nBmbm2HxRM1gZ0nSdjSsrZbGKg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-arm": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm/-/sharp-libvips-linux-arm-1.2.4.tgz",
+      "integrity": "sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A==",
+      "cpu": [
+        "arm"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-arm64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm64/-/sharp-libvips-linux-arm64-1.2.4.tgz",
+      "integrity": "sha512-excjX8DfsIcJ10x1Kzr4RcWe1edC9PquDRRPx3YVCvQv+U5p7Yin2s32ftzikXojb1PIFc/9Mt28/y+iRklkrw==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-ppc64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-ppc64/-/sharp-libvips-linux-ppc64-1.2.4.tgz",
+      "integrity": "sha512-FMuvGijLDYG6lW+b/UvyilUWu5Ayu+3r2d1S8notiGCIyYU/76eig1UfMmkZ7vwgOrzKzlQbFSuQfgm7GYUPpA==",
+      "cpu": [
+        "ppc64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-riscv64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-riscv64/-/sharp-libvips-linux-riscv64-1.2.4.tgz",
+      "integrity": "sha512-oVDbcR4zUC0ce82teubSm+x6ETixtKZBh/qbREIOcI3cULzDyb18Sr/Wcyx7NRQeQzOiHTNbZFF1UwPS2scyGA==",
+      "cpu": [
+        "riscv64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-s390x": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-s390x/-/sharp-libvips-linux-s390x-1.2.4.tgz",
+      "integrity": "sha512-qmp9VrzgPgMoGZyPvrQHqk02uyjA0/QrTO26Tqk6l4ZV0MPWIW6LTkqOIov+J1yEu7MbFQaDpwdwJKhbJvuRxQ==",
+      "cpu": [
+        "s390x"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-x64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.2.4.tgz",
+      "integrity": "sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linuxmusl-arm64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-arm64/-/sharp-libvips-linuxmusl-arm64-1.2.4.tgz",
+      "integrity": "sha512-FVQHuwx1IIuNow9QAbYUzJ+En8KcVm9Lk5+uGUQJHaZmMECZmOlix9HnH7n1TRkXMS0pGxIJokIVB9SuqZGGXw==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linuxmusl-x64": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.2.4.tgz",
+      "integrity": "sha512-+LpyBk7L44ZIXwz/VYfglaX/okxezESc6UxDSoyo2Ks6Jxc4Y7sGjpgU9s4PMgqgjj1gZCylTieNamqA1MF7Dg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-linux-arm": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-arm/-/sharp-linux-arm-0.34.5.tgz",
+      "integrity": "sha512-9dLqsvwtg1uuXBGZKsxem9595+ujv0sJ6Vi8wcTANSFpwV/GONat5eCkzQo/1O6zRIkh0m/8+5BjrRr7jDUSZw==",
+      "cpu": [
+        "arm"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-arm": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linux-arm64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-arm64/-/sharp-linux-arm64-0.34.5.tgz",
+      "integrity": "sha512-bKQzaJRY/bkPOXyKx5EVup7qkaojECG6NLYswgktOZjaXecSAeCWiZwwiFf3/Y+O1HrauiE3FVsGxFg8c24rZg==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-arm64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linux-ppc64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-ppc64/-/sharp-linux-ppc64-0.34.5.tgz",
+      "integrity": "sha512-7zznwNaqW6YtsfrGGDA6BRkISKAAE1Jo0QdpNYXNMHu2+0dTrPflTLNkpc8l7MUP5M16ZJcUvysVWWrMefZquA==",
+      "cpu": [
+        "ppc64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-ppc64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linux-riscv64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-riscv64/-/sharp-linux-riscv64-0.34.5.tgz",
+      "integrity": "sha512-51gJuLPTKa7piYPaVs8GmByo7/U7/7TZOq+cnXJIHZKavIRHAP77e3N2HEl3dgiqdD/w0yUfiJnII77PuDDFdw==",
+      "cpu": [
+        "riscv64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-riscv64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linux-s390x": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-s390x/-/sharp-linux-s390x-0.34.5.tgz",
+      "integrity": "sha512-nQtCk0PdKfho3eC5MrbQoigJ2gd1CgddUMkabUj+rBevs8tZ2cULOx46E7oyX+04WGfABgIwmMC0VqieTiR4jg==",
+      "cpu": [
+        "s390x"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-s390x": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linux-x64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-x64/-/sharp-linux-x64-0.34.5.tgz",
+      "integrity": "sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-x64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linuxmusl-arm64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linuxmusl-arm64/-/sharp-linuxmusl-arm64-0.34.5.tgz",
+      "integrity": "sha512-fprJR6GtRsMt6Kyfq44IsChVZeGN97gTD331weR1ex1c1rypDEABN6Tm2xa1wE6lYb5DdEnk03NZPqA7Id21yg==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linuxmusl-arm64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-linuxmusl-x64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linuxmusl-x64/-/sharp-linuxmusl-x64-0.34.5.tgz",
+      "integrity": "sha512-Jg8wNT1MUzIvhBFxViqrEhWDGzqymo3sV7z7ZsaWbZNDLXRJZoRGrjulp60YYtV4wfY8VIKcWidjojlLcWrd8Q==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linuxmusl-x64": "1.2.4"
+      }
+    },
+    "node_modules/@img/sharp-wasm32": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-wasm32/-/sharp-wasm32-0.34.5.tgz",
+      "integrity": "sha512-OdWTEiVkY2PHwqkbBI8frFxQQFekHaSSkUIJkwzclWZe64O1X4UlUjqqqLaPbUpMOQk6FBu/HtlGXNblIs0huw==",
+      "cpu": [
+        "wasm32"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+      "optional": true,
+      "dependencies": {
+        "@emnapi/runtime": "^1.7.0"
+      },
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-arm64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-arm64/-/sharp-win32-arm64-0.34.5.tgz",
+      "integrity": "sha512-WQ3AgWCWYSb2yt+IG8mnC6Jdk9Whs7O0gxphblsLvdhSpSTtmu69ZG1Gkb6NuvxsNACwiPV6cNSZNzt0KPsw7g==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-ia32": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.34.5.tgz",
+      "integrity": "sha512-FV9m/7NmeCmSHDD5j4+4pNI8Cp3aW+JvLoXcTUo0IqyjSfAZJ8dIUmijx1qaJsIiU+Hosw6xM5KijAWRJCSgNg==",
+      "cpu": [
+        "ia32"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-x64": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.5.tgz",
+      "integrity": "sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
     },
     "node_modules/@internationalized/date": {
       "version": "3.6.0",
@@ -8115,6 +8585,126 @@ module.exports = nextConfig;
       "license": "MIT",
       "dependencies": {
         "glob": "10.3.10"
+      }
+    },
+    "node_modules/@next/swc-darwin-arm64": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-14.2.25.tgz",
+      "integrity": "sha512-09clWInF1YRd6le00vt750s3m7SEYNehz9C4PUcSu3bAdCTpjIV4aTYQZ25Ehrr83VR1rZeqtKUPWSI7GfuKZQ==",
+      "cpu": [
+        "arm64"
+      ],
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-darwin-x64": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-14.2.25.tgz",
+      "integrity": "sha512-V+iYM/QR+aYeJl3/FWWU/7Ix4b07ovsQ5IbkwgUK29pTHmq+5UxeDr7/dphvtXEq5pLB/PucfcBNh9KZ8vWbug==",
+      "cpu": [
+        "x64"
+      ],
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-arm64-gnu": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-14.2.25.tgz",
+      "integrity": "sha512-LFnV2899PJZAIEHQ4IMmZIgL0FBieh5keMnriMY1cK7ompR+JUd24xeTtKkcaw8QmxmEdhoE5Mu9dPSuDBgtTg==",
+      "cpu": [
+        "arm64"
+      ],
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-arm64-musl": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-14.2.25.tgz",
+      "integrity": "sha512-QC5y5PPTmtqFExcKWKYgUNkHeHE/z3lUsu83di488nyP0ZzQ3Yse2G6TCxz6nNsQwgAx1BehAJTZez+UQxzLfw==",
+      "cpu": [
+        "arm64"
+      ],
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-x64-gnu": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-14.2.25.tgz",
+      "integrity": "sha512-y6/ML4b9eQ2D/56wqatTJN5/JR8/xdObU2Fb1RBidnrr450HLCKr6IJZbPqbv7NXmje61UyxjF5kvSajvjye5w==",
+      "cpu": [
+        "x64"
+      ],
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-x64-musl": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-14.2.25.tgz",
+      "integrity": "sha512-sPX0TSXHGUOZFvv96GoBXpB3w4emMqKeMgemrSxI7A6l55VBJp/RKYLwZIB9JxSqYPApqiREaIIap+wWq0RU8w==",
+      "cpu": [
+        "x64"
+      ],
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-win32-arm64-msvc": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-14.2.25.tgz",
+      "integrity": "sha512-ReO9S5hkA1DU2cFCsGoOEp7WJkhFzNbU/3VUF6XxNGUCQChyug6hZdYL/istQgfT/GWE6PNIg9cm784OI4ddxQ==",
+      "cpu": [
+        "arm64"
+      ],
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-win32-ia32-msvc": {
+      "version": "14.2.25",
+      "resolved": "https://registry.npmjs.org/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-14.2.25.tgz",
+      "integrity": "sha512-DZ/gc0o9neuCDyD5IumyTGHVun2dCox5TfPQI/BJTYwpSNYM3CZDI4i6TOdjeq1JMo+Ug4kPSMuZdwsycwFbAw==",
+      "cpu": [
+        "ia32"
+      ],
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": ">= 10"
       }
     },
     "node_modules/@next/swc-win32-x64-msvc": {
@@ -12840,6 +13430,15 @@ module.exports = nextConfig;
         "node": ">=0.4.0"
       }
     },
+    "node_modules/detect-libc": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
+      "integrity": "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/didyoumean": {
       "version": "1.2.2",
       "license": "Apache-2.0"
@@ -15832,7 +16431,6 @@ module.exports = nextConfig;
     },
     "node_modules/semver": {
       "version": "7.7.3",
-      "dev": true,
       "license": "ISC",
       "bin": {
         "semver": "bin/semver.js"
@@ -15882,6 +16480,50 @@ module.exports = nextConfig;
       },
       "engines": {
         "node": ">= 0.4"
+      }
+    },
+    "node_modules/sharp": {
+      "version": "0.34.5",
+      "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.34.5.tgz",
+      "integrity": "sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==",
+      "hasInstallScript": true,
+      "license": "Apache-2.0",
+      "dependencies": {
+        "@img/colour": "^1.0.0",
+        "detect-libc": "^2.1.2",
+        "semver": "^7.7.3"
+      },
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-darwin-arm64": "0.34.5",
+        "@img/sharp-darwin-x64": "0.34.5",
+        "@img/sharp-libvips-darwin-arm64": "1.2.4",
+        "@img/sharp-libvips-darwin-x64": "1.2.4",
+        "@img/sharp-libvips-linux-arm": "1.2.4",
+        "@img/sharp-libvips-linux-arm64": "1.2.4",
+        "@img/sharp-libvips-linux-ppc64": "1.2.4",
+        "@img/sharp-libvips-linux-riscv64": "1.2.4",
+        "@img/sharp-libvips-linux-s390x": "1.2.4",
+        "@img/sharp-libvips-linux-x64": "1.2.4",
+        "@img/sharp-libvips-linuxmusl-arm64": "1.2.4",
+        "@img/sharp-libvips-linuxmusl-x64": "1.2.4",
+        "@img/sharp-linux-arm": "0.34.5",
+        "@img/sharp-linux-arm64": "0.34.5",
+        "@img/sharp-linux-ppc64": "0.34.5",
+        "@img/sharp-linux-riscv64": "0.34.5",
+        "@img/sharp-linux-s390x": "0.34.5",
+        "@img/sharp-linux-x64": "0.34.5",
+        "@img/sharp-linuxmusl-arm64": "0.34.5",
+        "@img/sharp-linuxmusl-x64": "0.34.5",
+        "@img/sharp-wasm32": "0.34.5",
+        "@img/sharp-win32-arm64": "0.34.5",
+        "@img/sharp-win32-ia32": "0.34.5",
+        "@img/sharp-win32-x64": "0.34.5"
       }
     },
     "node_modules/shebang-command": {
@@ -17081,15 +17723,15 @@ module.exports = nextConfig;
 ### <a id="📄-package-json"></a>📄 `package.json`
 
 **File Info:**
-- **Size**: 1.28 KB
+- **Size**: 1.3 KB
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package.json`
 - **Relative Path**: `root`
 - **Created**: 2025-11-12 05:58:33 (Asia/Katmandu / GMT+06:45)
-- **Modified**: 2025-11-28 20:49:32 (Asia/Katmandu / GMT+06:45)
-- **MD5**: `68e96db8800b88f61a9069e6b9517ed4`
-- **SHA256**: `82c57b4e4a1a422a95d998c6034e79e7de2025cc353aef8d4a5466911b739144`
+- **Modified**: 2025-11-30 02:58:34 (Asia/Katmandu / GMT+06:45)
+- **MD5**: `6e066f5b1fac2fe9c53062abcbb3b0f0`
+- **SHA256**: `5265eda5d1caf9708a05cfd5d1e3593ba5c8195e4214b4f92a422e34be44ee5f`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -17127,6 +17769,7 @@ module.exports = nextConfig;
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "recharts": "^2.12.7",
+    "sharp": "^0.34.5",
     "stripe": "^16.5.0",
     "timeago.js": "^4.0.2"
   },

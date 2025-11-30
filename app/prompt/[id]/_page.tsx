@@ -28,36 +28,30 @@ const PromptDetailsPage = ({
   const [prompt, setPrompt] = useState<propmt>();
   const [loading, setLoading] = useState(true);
 
-  const fetchPromptData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/get-prompt/${promptId}`);
-      const data = await response.json();
-      setPrompt(data);
-    } catch (error) {
-      console.error("Failed to fetch prompts:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchPromptData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/get-prompt/${promptId}`);
+        const data = await response.json();
+        setPrompt(data);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (promptId) fetchPromptData();
+  }, [promptId]);
 
   useEffect(() => {
-    fetchPromptData();
+    // set mounted once
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-    }
-  }, [isMounted]);
-
-  useEffect(() => {
     if (prompt) {
-      if (publishAbleKey) {
-        const amount = Math.round(prompt.price * 100);
-        newPaymentIntent({ amount });
-        setStripePromise(loadStripe(publishAbleKey));
-      }
+      setStripePromise(loadStripe(publishAbleKey));
     }
   }, [publishAbleKey, prompt]);
 

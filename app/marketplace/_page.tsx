@@ -26,20 +26,6 @@ const MarketPlaceRouter = ({
 
   const router = useRouter();
 
-  const fetchPromptsData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/get-prompts?page=${initialPage}`);
-      const data = await response.json();
-      setPrompts(data.prompts);
-      setTotalPrompts(data.totalPrompts);
-    } catch (error) {
-      console.error("Failed to fetch prompts:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     if (!isMounted) {
       setisMounted(true);
@@ -53,6 +39,19 @@ const MarketPlaceRouter = ({
   }, [initialPage, router]);
 
   useEffect(() => {
+    const fetchPromptsData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/get-prompts?page=${initialPage}`);
+        const data = await response.json();
+        setPrompts(data.prompts);
+        setTotalPrompts(data.totalPrompts);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchPromptsData();
   }, [initialPage]);
 

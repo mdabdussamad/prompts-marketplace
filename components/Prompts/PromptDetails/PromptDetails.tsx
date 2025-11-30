@@ -19,24 +19,24 @@ const PromptDetails = ({
   const [prompts, setPrompts] = useState<propmt[]>();
   const [loading, setLoading] = useState(true);
 
-  const fetchPromptData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `/api/get-related-prompts?promptCategory=${promptData?.category}`
-      );
-      const data = await response.json();
-      setPrompts(data);
-    } catch (error) {
-      console.error("Failed to fetch prompts:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchPromptData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `/api/get-related-prompts?promptCategory=${promptData?.category}`
+        );
+        const data = await response.json();
+        setPrompts(data);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchPromptData();
-  }, []);
+  }, [promptData?.category]);
 
   return (
     <div>
